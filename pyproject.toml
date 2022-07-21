@@ -4,10 +4,7 @@ version = "0.1.0"
 description = "A touhou guessing game discord bot."
 authors = ["Lunarmagpie <bambolambo0@gmail.com>"]
 license = "GPLv2"
-packages = [
-    { include = "bot" },
-    { include = "characters" },
-]
+packages = [{ include = "bot" }, { include = "characters" }]
 
 [tool.poetry.scripts]
 run = "bot.bot:run"
@@ -27,14 +24,24 @@ flake8 = "^4.0.1"
 isort = "^5.10.1"
 nox = "^2022.1.7"
 pylint = "^2.14.5"
+codespell = "^2.1.0"
 
 [tool.mypy]
-python_version = 3.10
+python_version = "3.10"
 strict = true
 warn_unused_configs = true
 warn_return_any = true
 warn_redundant_casts = true
 namespace_packages = true
+
+[tool.black]
+line-length = 88
+target-version = ['py310']
+skip-magic-trailing-comma = true
+
+[tool.isort]
+profile = "black"
+line_length = 88
 
 [build-system]
 requires = ["poetry-core>=1.0.0"]
