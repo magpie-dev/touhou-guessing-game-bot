@@ -29,7 +29,7 @@ nox = "^2022.1.7"
 pylint = "^2.14.5"
 
 [tool.mypy]
-python_version = 3.10
+python_version = "3.10"
 strict = true
 warn_unused_configs = true
 warn_return_any = true
