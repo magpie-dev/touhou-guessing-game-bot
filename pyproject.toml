@@ -1,0 +1,41 @@
+[tool.poetry]
+name = "touhou-bot"
+version = "0.1.0"
+description = "A touhou guessing game discord bot."
+authors = ["Lunarmagpie <bambolambo0@gmail.com>"]
+license = "GPLv2"
+packages = [
+    { include = "bot" },
+    { include = "characters" },
+]
+
+[tool.poetry.scripts]
+run = "bot.bot:run"
+
+[tool.poetry.dependencies]
+python = ">=3.10,<3.11"
+hikari-crescent = "^0.2.4"
+hikari = "^2.0.0-alpha.109"
+Pillow = "^9.2.0"
+types-Pillow = "^9.2.0"
+python-dotenv = "^0.20.0"
+
+[tool.poetry.dev-dependencies]
+mypy = "^0.971"
+black = "^22.6.0"
+flake8 = "^4.0.1"
+isort = "^5.10.1"
+nox = "^2022.1.7"
+pylint = "^2.14.5"
+
+[tool.mypy]
+python_version = 3.10
+strict = true
+warn_unused_configs = true
+warn_return_any = true
+warn_redundant_casts = true
+namespace_packages = true
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
