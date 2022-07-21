@@ -10,5 +10,4 @@ class Bot(crescent.Bot):
 
 
 def run() -> None:
-    bot = Bot()
-    bot.run()
+    Bot().run()
