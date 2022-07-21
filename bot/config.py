@@ -1,5 +1,6 @@
-import dotenv
 import dataclasses
+
+import dotenv
 
 
 @dataclasses.dataclass
@@ -10,4 +11,7 @@ class Config:
         if self.token is None:
             raise ValueError("TOKEN environment variable not found")
 
-CONFIG = Config(**{k.lower(): v for k, v in dotenv.dotenv_values().items()})  # type: ignore
+
+CONFIG = Config(
+    **{k.lower(): v for k, v in dotenv.dotenv_values().items()}  # type: ignore
+)

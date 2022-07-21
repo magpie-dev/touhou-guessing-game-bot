@@ -118,6 +118,18 @@ python-versions = ">=3.7"
 colorama = {version = "*", markers = "platform_system == \"Windows\""}
 
 [[package]]
+name = "codespell"
+version = "2.1.0"
+description = "Codespell"
+category = "dev"
+optional = false
+python-versions = ">=3.5"
+
+[package.extras]
+dev = ["check-manifest", "flake8", "pytest", "pytest-cov", "pytest-dependency"]
+hard-encoding-detection = ["chardet"]
+
+[[package]]
 name = "colorama"
 version = "0.4.5"
 description = "Cross-platform colored terminal text."
@@ -547,7 +559,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.11"
-content-hash = "9484e26226f9284fae5fb651453d78666f87290ad708a62f61ffb0a627b6e589"
+content-hash = "039e7fb7b1191ecce400554b68ba20bd521b626a2eec2081a66d9473ef625e31"
 
 [metadata.files]
 aiohttp = []
@@ -559,6 +571,7 @@ attrs = []
 black = []
 charset-normalizer = []
 click = []
+codespell = []
 colorama = []
 colorlog = []
 croniter = []
