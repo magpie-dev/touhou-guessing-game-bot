@@ -19,7 +19,6 @@ async def create_silhouette(filepath: pathlib.Path) -> None:
     x = np.dstack([r, g, b, a])
 
     image = Image.fromarray(x, "RGBA")
-    name = hash_character_name(filepath.stem)
 
     file = filepath.with_stem(hash_character_name(filepath.stem)).name
     filepath = filepath.parent.parent / "silhouettes" / file
