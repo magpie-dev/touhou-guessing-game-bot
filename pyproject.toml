@@ -7,7 +7,9 @@ license = "GPLv2"
 packages = [{ include = "bot" }, { include = "characters" }]
 
 [tool.poetry.scripts]
-run = "bot.bot:run"
+start = "bot.bot:run"
+generate-silhouettes = "characters.generate_silhouettes:main"
+
 
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
@@ -16,6 +18,7 @@ hikari = "^2.0.0-alpha.109"
 Pillow = "^9.2.0"
 types-Pillow = "^9.2.0"
 python-dotenv = "^0.20.0"
+numpy = "^1.23.1"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.971"

@@ -338,6 +338,14 @@ virtualenv = ">=14.0.0"
 tox_to_nox = ["jinja2", "tox"]
 
 [[package]]
+name = "numpy"
+version = "1.23.1"
+description = "NumPy is the fundamental package for array computing with Python."
+category = "main"
+optional = false
+python-versions = ">=3.8"
+
+[[package]]
 name = "packaging"
 version = "21.3"
 description = "Core utilities for Python packages"
@@ -559,7 +567,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.11"
-content-hash = "039e7fb7b1191ecce400554b68ba20bd521b626a2eec2081a66d9473ef625e31"
+content-hash = "d94256c858313b8f806f5cf15ed540da1b92510544e888f6a6cc39305371271a"
 
 [metadata.files]
 aiohttp = []
@@ -590,6 +598,7 @@ multidict = []
 mypy = []
 mypy-extensions = []
 nox = []
+numpy = []
 packaging = []
 pathspec = []
 pillow = []
