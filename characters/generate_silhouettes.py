@@ -1,8 +1,9 @@
 import asyncio
-
-from PIL import Image
-import numpy as np
 import pathlib
+
+import numpy as np
+from PIL import Image
+
 from characters.utils import hash_character_name
 
 
