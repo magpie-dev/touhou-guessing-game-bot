@@ -9,11 +9,11 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: ${{ matrix.python-version }}
+          python-version: '3.10'
           architecture: 'x64'
       - name: Setup Poetry
         uses: abatilo/actions-poetry@v2.1.3
-      - name: run Pytest
+      - name: run nox
         run: |
           poetry install
           poetry run nox
