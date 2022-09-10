@@ -1,7 +1,7 @@
 import crescent
-from bot.utils import Plugin
 
 from bot.guessing_game.game import Game
+from bot.utils import Plugin
 
 plugin = Plugin()
 

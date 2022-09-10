@@ -1,11 +1,12 @@
 from __future__ import annotations
 
-import crescent
-
 import typing
+
+import crescent
 import hikari
-from characters.utils import get_character_url, random_character
+
 from bot.guessing_game.abstract_game import AbstractGame
+from characters.utils import get_character_url, random_character
 
 if typing.TYPE_CHECKING:
     from bot.bot import Bot
@@ -30,5 +31,6 @@ class Game(AbstractGame):
 
     async def on_start(self) -> None:
         embed = hikari.Embed(title="Guess the Touhou!").set_image(
-            get_character_url(self.character, hidden=True))
+            get_character_url(self.character, hidden=True)
+        )
         await self.ctx.respond(embeds=[embed])
