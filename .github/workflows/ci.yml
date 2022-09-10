@@ -1,7 +1,7 @@
 name: ci
 on: [push, pull_request]
 jobs:
-  ci:
+  typecheck:
     name: typechecking
     runs-on: ubuntu-latest
     steps:
@@ -18,7 +18,7 @@ jobs:
           poetry install
           poetry run nox -s mypy
 
-  ci:
+  lint:
     name: lint
     runs-on: ubuntu-latest
     steps:
