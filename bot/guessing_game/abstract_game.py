@@ -1,14 +1,17 @@
 from __future__ import annotations
 
+import abc
 import asyncio
 import typing
+
 import crescent
 import hikari
+
 from characters.utils import is_same_name
-import abc
 
 if typing.TYPE_CHECKING:
     from bot.bot import Bot
+
 
 class AbstractGame(abc.ABC):
     def __init__(self, ctx: crescent.Context, bot: Bot) -> None:
@@ -43,9 +46,6 @@ class AbstractGame(abc.ABC):
             return
 
         if is_same_name(event.content, self.character):
-            await asyncio.gather(
-                event.message.add_reaction("✅"),
-                self.on_win(),
-            )
+            await asyncio.gather(event.message.add_reaction("✅"), self.on_win())
         else:
             await event.message.add_reaction("❌")

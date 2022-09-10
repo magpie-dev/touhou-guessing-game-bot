@@ -1,7 +1,7 @@
-import pathlib
 import hashlib
-import typing
+import pathlib
 import random
+import typing
 
 
 def all_characters() -> typing.Iterable[str]:
@@ -30,7 +30,10 @@ def is_same_name(a: str, b: str) -> bool:
 
 
 def get_character_url(name: str, *, hidden: bool) -> str:
-    base_url = "https://raw.githubusercontent.com/magpie-dev/touhou-guessing-game-bot/main/resources"
+    base_url = (
+        "https://raw.githubusercontent.com/magpie-dev/"
+        "touhou-guessing-game-bot/main/resources"
+    )
     if hidden:
         name = hash_character_name(name)
         return f"{base_url}/silhouettes/{name}.png"
