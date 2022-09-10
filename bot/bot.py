@@ -8,7 +8,9 @@ class Bot(crescent.Bot):
         super().__init__(token=CONFIG.token)
 
         self.plugins.load_folder("bot.plugins")
+        print(self._command_handler.registry.values())
 
 
 def run() -> None:
-    Bot().run()
+    bot = Bot()
+    bot.run()
