@@ -14,7 +14,7 @@ generate-silhouettes = "characters.generate_silhouettes:main"
 [tool.poetry.dependencies]
 python = ">=3.10,<3.11"
 hikari-crescent = "^0.3.0"
-hikari = "^2.0.0-alpha.109"
+hikari = ">=2.0.0-dev.110"
 Pillow = "^9.2.0"
 types-Pillow = "^9.2.0"
 python-dotenv = "^0.20.0"
