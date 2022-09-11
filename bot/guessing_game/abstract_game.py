@@ -15,9 +15,11 @@ if typing.TYPE_CHECKING:
 
 
 class AbstractGame(abc.ABC):
-    def __init__(self, ctx: crescent.Context, bot: Bot) -> None:
+    def __init__(self, ctx: crescent.Context, bot: Bot, *, round_timeout: int) -> None:
         self.ctx = ctx
         self.bot = bot
+
+        asyncio.get_event_loop().call_later(round_timeout, self.timeout_handler)
 
     @property
     @abc.abstractmethod
@@ -31,6 +33,21 @@ class AbstractGame(abc.ABC):
     @abc.abstractmethod
     async def on_win(self) -> None:
         ...
+
+    @abc.abstractmethod
+    async def on_timeout(self) -> None:
+        ...
+
+    def timeout_handler(self):
+        asyncio.ensure_future(self.on_timeout())
+
+        async def _timeout_handler_inner():
+            asyncio.ensure_future(db.Guess(character_id=await self.get_character_id()).create())
+
+        asyncio.ensure_future(_timeout_handler_inner())
+
+    async def get_character_id(self):
+        return await characters.get_character_id(name=self.character)
 
     async def start(self) -> None:
         self.bot.subscribe(hikari.MessageCreateEvent, self.on_message)
@@ -54,7 +71,7 @@ class AbstractGame(abc.ABC):
             await event.message.add_reaction("❌")
 
         await db.Guess(
-            character_id=await characters.get_character_id(name=self.character),
+            character_id=await self.get_character_id(),
             guessed_by=event.author.id,
             correct=correct,
         ).create()

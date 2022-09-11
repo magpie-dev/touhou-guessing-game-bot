@@ -14,7 +14,7 @@ if typing.TYPE_CHECKING:
 
 class Game(AbstractGame):
     def __init__(self, ctx: crescent.Context, bot: Bot) -> None:
-        super().__init__(ctx, bot)
+        super().__init__(ctx, bot, round_timeout=30)
         self._character = random_character()
         print(self._character)
 
@@ -34,3 +34,12 @@ class Game(AbstractGame):
             get_character_url(self.character, hidden=True)
         )
         await self.ctx.respond(embeds=[embed])
+
+    async def on_timeout(self) -> None:
+        embed = (
+            hikari.Embed(title=self.character)
+            .set_image(get_character_url(self.character, hidden=False))
+            .set_author(name="Nobody guessed the answer :(")
+        )
+        await self.ctx.respond(embeds=[embed])
+        await self.stop()
