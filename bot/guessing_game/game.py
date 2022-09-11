@@ -15,13 +15,17 @@ if typing.TYPE_CHECKING:
 
 class Game(AbstractGame):
     def __init__(self, ctx: crescent.Context, bot: Bot) -> None:
-        super().__init__(ctx, bot, round_timeout=30, game_mode=db.GameMode.NORMAL)
+        super().__init__(ctx, bot, round_timeout=30)
         self._character = random_character()
         print(self._character)
 
     @property
     def character(self) -> str:
         return self._character
+
+    @property
+    def game_mode(self) -> db.GameMode:
+        return db.GameMode.NORMAL
 
     async def on_win(self) -> None:
         embed = hikari.Embed(title="Correct!").set_image(
