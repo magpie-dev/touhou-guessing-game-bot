@@ -1,8 +1,9 @@
+import functools
 import hashlib
 import pathlib
 import random
 import typing
-import functools
+
 import async_lru
 
 
@@ -49,5 +50,6 @@ def hash_character_name(name: str) -> str:
 @async_lru.alru_cache(maxsize=None)
 async def get_character_id(name: str) -> int:
     import db
+
     c = await db.Character.fetch(name=name)
     return c.id

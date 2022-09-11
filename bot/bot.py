@@ -1,13 +1,14 @@
 from __future__ import annotations
-import asyncio
 
+import asyncio
 import typing
+
 import crescent
 import hikari
 
-from bot.config import CONFIG
-import db
 import characters
+import db
+from bot.config import CONFIG
 
 
 class Bot(crescent.Bot):
