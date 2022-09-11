@@ -8,6 +8,7 @@ import nox
 SCRIPT_PATHS = [
     "bot",
     "characters",
+    "db",
 ]
 
 
