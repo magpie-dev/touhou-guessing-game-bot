@@ -59,7 +59,7 @@ class AbstractGame(abc.ABC):
         asyncio.ensure_future(_timeout_handler_inner())
 
     async def get_character_id(self) -> int:
-        return await characters.get_character_id(name=self.character)  # type: ignore
+        return await characters.get_character_id(name=self.character)
 
     async def start(self) -> None:
         self.bot.subscribe(hikari.MessageCreateEvent, self.on_message)
