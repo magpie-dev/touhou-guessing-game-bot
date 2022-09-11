@@ -4,7 +4,7 @@ version = "0.1.0"
 description = "A touhou guessing game discord bot."
 authors = ["Lunarmagpie <bambolambo0@gmail.com>"]
 license = "GPLv2"
-packages = [{ include = "bot" }, { include = "characters" }]
+packages = [{ include = "bot" }, { include = "characters" }, { include = "db" }]
 
 [tool.poetry.scripts]
 start = "bot.bot:run"
@@ -19,6 +19,9 @@ Pillow = "^9.2.0"
 types-Pillow = "^9.2.0"
 python-dotenv = "^0.20.0"
 numpy = "^1.23.1"
+asyncpg = "^0.26.0"
+apgorm = "^1.0.0-beta.12"
+async-lru = "^1.0.3"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.971"
@@ -30,7 +33,7 @@ pylint = "^2.14.5"
 codespell = "^2.1.0"
 
 [tool.mypy]
-python_version = "3.10"
+python_version = "3.9"
 strict = true
 warn_unused_configs = true
 warn_return_any = true

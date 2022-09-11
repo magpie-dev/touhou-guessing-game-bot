@@ -1,7 +1,10 @@
+import functools
 import hashlib
 import pathlib
 import random
 import typing
+
+import async_lru
 
 
 def all_characters() -> typing.Iterable[str]:
@@ -35,10 +38,18 @@ def get_character_url(name: str, *, hidden: bool) -> str:
         "touhou-guessing-game-bot/main/resources"
     )
     if hidden:
-        name = hash_character_name(name)
-        return f"{base_url}/silhouettes/{name}.png"
+        return f"{base_url}/silhouettes/{hash_character_name(name)}.png"
     return f"{base_url}/images/{name.replace(' ', '%20')}.png"
 
 
+@functools.lru_cache(maxsize=None)
 def hash_character_name(name: str) -> str:
     return hashlib.md5(name.encode("utf-8")).hexdigest()
+
+
+@async_lru.alru_cache(maxsize=None)
+async def get_character_id(name: str) -> int:
+    import db
+
+    c = await db.Character.fetch(name=name)
+    return c.id

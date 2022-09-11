@@ -12,6 +12,4 @@ group = crescent.Group("guessing-game")
 @group.child
 @crescent.command
 async def normal(ctx: crescent.Context) -> None:
-
-    game = Game(ctx, plugin.app)
-    await game.start()
+    await Game(ctx, plugin.app).start()
