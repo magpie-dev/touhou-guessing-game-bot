@@ -15,13 +15,7 @@ if typing.TYPE_CHECKING:
 
 
 class AbstractGame(abc.ABC):
-    def __init__(
-        self,
-        ctx: crescent.Context,
-        bot: Bot,
-        *,
-        round_timeout: int,
-    ) -> None:
+    def __init__(self, ctx: crescent.Context, bot: Bot, *, round_timeout: int) -> None:
         self.ctx = ctx
         self.bot = bot
 
