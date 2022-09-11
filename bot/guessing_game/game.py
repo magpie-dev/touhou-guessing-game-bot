@@ -7,6 +7,7 @@ import hikari
 
 from bot.guessing_game.abstract_game import AbstractGame
 from characters.utils import get_character_url, random_character
+
 import db
 
 if typing.TYPE_CHECKING:

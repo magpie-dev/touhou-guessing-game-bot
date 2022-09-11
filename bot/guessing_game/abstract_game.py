@@ -7,8 +7,8 @@ import typing
 import crescent
 import hikari
 
-import characters
 import db
+import characters
 
 if typing.TYPE_CHECKING:
     from bot.bot import Bot
