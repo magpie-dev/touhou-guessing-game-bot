@@ -15,9 +15,17 @@ if typing.TYPE_CHECKING:
 
 
 class AbstractGame(abc.ABC):
-    def __init__(self, ctx: crescent.Context, bot: Bot, *, round_timeout: int) -> None:
+    def __init__(
+        self,
+        ctx: crescent.Context,
+        bot: Bot,
+        *,
+        round_timeout: int,
+        game_mode: db.GameMode,
+    ) -> None:
         self.ctx = ctx
         self.bot = bot
+        self.game_mode: db.GameMode = game_mode
 
         asyncio.get_event_loop().call_later(round_timeout, self.timeout_handler)
 
@@ -42,7 +50,9 @@ class AbstractGame(abc.ABC):
         asyncio.ensure_future(self.on_timeout())
 
         async def _timeout_handler_inner():
-            asyncio.ensure_future(db.Guess(character_id=await self.get_character_id()).create())
+            asyncio.ensure_future(
+                db.Guess(character_id=await self.get_character_id()).create()
+            )
 
         asyncio.ensure_future(_timeout_handler_inner())
 

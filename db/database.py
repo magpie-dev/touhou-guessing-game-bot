@@ -1,13 +1,14 @@
+import enum
 import typing
 import apgorm
 from apgorm import types
 
-__all__: typing.Sequence[str] = (
-    "User",
-    "Guess",
-    "Character",
-    "Database",
-)
+__all__: typing.Sequence[str] = ("User", "Guess", "Character", "Database", "GameMode")
+
+
+class GameMode(enum.IntEnum):
+    NORMAL = 0
+    CHALLENGE = 1
 
 
 class User(apgorm.Model):
@@ -23,8 +24,10 @@ class Guess(apgorm.Model):
     character_id = types.Int().field()
     guessed_by = types.Numeric().nullablefield()
     correct = types.Boolean().nullablefield()
+    gamemode = types.SmallInt().field().with_converter(apgorm.IntEFConverter(GameMode))
 
     primary_key = (id,)
+
 
 class Character(apgorm.Model):
     id = types.Serial().field()
