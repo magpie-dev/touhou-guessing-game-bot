@@ -44,8 +44,6 @@ def run() -> None:
         if await bot.db.must_apply_migrations():
             await bot.db.apply_migrations()
 
-        print(list(characters.all_characters()))
-
         async def create_char(character: str) -> None:
             if not await db.Character().exists(name=character):
                 await db.Character(name=character).create()

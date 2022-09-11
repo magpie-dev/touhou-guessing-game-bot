@@ -21,17 +21,20 @@ class AbstractGame(abc.ABC):
         bot: Bot,
         *,
         round_timeout: int,
-        game_mode: db.GameMode,
     ) -> None:
         self.ctx = ctx
         self.bot = bot
-        self.game_mode: db.GameMode = game_mode
 
         asyncio.get_event_loop().call_later(round_timeout, self.timeout_handler)
 
     @property
     @abc.abstractmethod
     def character(self) -> str:
+        ...
+
+    @property
+    @abc.abstractmethod
+    def game_mode(self) -> db.GameMode:
         ...
 
     @abc.abstractmethod
