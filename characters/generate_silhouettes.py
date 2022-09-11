@@ -4,7 +4,7 @@ import pathlib
 import numpy as np
 from PIL import Image
 
-from characters.utils import get_id
+from characters.utils import hash_character_name
 
 
 async def create_silhouette(filepath: pathlib.Path) -> None:
@@ -21,7 +21,7 @@ async def create_silhouette(filepath: pathlib.Path) -> None:
 
     image = Image.fromarray(x, "RGBA")
 
-    file = filepath.with_stem(str(get_id(filepath.stem))).name
+    file = filepath.with_stem(hash_character_name(filepath.stem)).name
     filepath = filepath.parent.parent / "silhouettes" / file
 
     await loop.run_in_executor(None, image.save, filepath.absolute())

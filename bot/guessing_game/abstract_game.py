@@ -7,7 +7,8 @@ import typing
 import crescent
 import hikari
 
-from characters.utils import is_same_name
+import characters
+import db
 
 if typing.TYPE_CHECKING:
     from bot.bot import Bot
@@ -45,7 +46,15 @@ class AbstractGame(abc.ABC):
         if not event.content:
             return
 
-        if is_same_name(event.content, self.character):
+        correct = characters.is_same_name(event.content, self.character)
+
+        if correct:
             await asyncio.gather(event.message.add_reaction("✅"), self.on_win())
         else:
             await event.message.add_reaction("❌")
+
+        await db.Guess(
+            character_id=await characters.get_character_id(name=self.character),
+            guessed_by=event.author.id,
+            correct=correct,
+        ).create()

@@ -65,6 +65,14 @@ lazy-object-proxy = ">=1.4.0"
 wrapt = {version = ">=1.11,<2", markers = "python_version < \"3.11\""}
 
 [[package]]
+name = "async-lru"
+version = "1.0.3"
+description = "Simple lru_cache for asyncio"
+category = "main"
+optional = false
+python-versions = ">=3.6"
+
+[[package]]
 name = "async-timeout"
 version = "4.0.2"
 description = "Timeout context manager for asyncio programs"
@@ -626,7 +634,7 @@ multidict = ">=4.0"
 [metadata]
 lock-version = "1.1"
 python-versions = ">=3.10,<3.11"
-content-hash = "c0415ec0833548aee042617193032595405ec1f06aef0111bb14b0160008bc79"
+content-hash = "7a365845e47dc9b7a2a9aee49846d45317e4b9a6e51f5e99e1fe72d0d9e2c45c"
 
 [metadata.files]
 aiohttp = []
@@ -634,6 +642,7 @@ aiosignal = []
 apgorm = []
 argcomplete = []
 astroid = []
+async-lru = []
 async-timeout = []
 asyncpg = []
 attrs = []

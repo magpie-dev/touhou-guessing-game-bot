@@ -21,6 +21,7 @@ python-dotenv = "^0.20.0"
 numpy = "^1.23.1"
 asyncpg = "^0.26.0"
 apgorm = "^1.0.0-beta.12"
+async-lru = "^1.0.3"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.971"
