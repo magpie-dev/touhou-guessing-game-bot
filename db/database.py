@@ -22,9 +22,9 @@ class Guess(apgorm.Model):
     id = types.Serial().field()
 
     character_id = types.Int().field()
+    game_mode = types.SmallInt().field().with_converter(apgorm.IntEFConverter(GameMode))
     guessed_by = types.Numeric().nullablefield()
     correct = types.Boolean().nullablefield()
-    gamemode = types.SmallInt().field().with_converter(apgorm.IntEFConverter(GameMode))
 
     primary_key = (id,)
 

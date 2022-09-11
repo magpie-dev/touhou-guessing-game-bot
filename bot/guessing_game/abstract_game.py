@@ -51,7 +51,9 @@ class AbstractGame(abc.ABC):
 
         async def _timeout_handler_inner():
             asyncio.ensure_future(
-                db.Guess(character_id=await self.get_character_id()).create()
+                db.Guess(
+                    character_id=await self.get_character_id(), game_mode=self.game_mode
+                ).create()
             )
 
         asyncio.ensure_future(_timeout_handler_inner())
@@ -84,4 +86,5 @@ class AbstractGame(abc.ABC):
             character_id=await self.get_character_id(),
             guessed_by=event.author.id,
             correct=correct,
+            game_mode=self.game_mode,
         ).create()
