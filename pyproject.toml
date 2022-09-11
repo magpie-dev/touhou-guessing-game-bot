@@ -33,7 +33,7 @@ pylint = "^2.14.5"
 codespell = "^2.1.0"
 
 [tool.mypy]
-python_version = "3.8"
+python_version = "3.9"
 strict = true
 warn_unused_configs = true
 warn_return_any = true
