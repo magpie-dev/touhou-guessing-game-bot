@@ -40,6 +40,9 @@ warn_return_any = true
 warn_redundant_casts = true
 namespace_packages = true
 
+[tool.mypy-async_lru]
+ignore_missing_imports = true
+
 [tool.black]
 line-length = 88
 target-version = ['py310']

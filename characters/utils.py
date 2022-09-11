@@ -47,7 +47,7 @@ def hash_character_name(name: str) -> str:
     return hashlib.md5(name.encode("utf-8")).hexdigest()
 
 
-@async_lru.alru_cache(maxsize=None)
+@async_lru.alru_cache(maxsize=None)  # type: ignore
 async def get_character_id(name: str) -> int:
     import db
 

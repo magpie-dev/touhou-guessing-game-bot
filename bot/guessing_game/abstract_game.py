@@ -46,10 +46,10 @@ class AbstractGame(abc.ABC):
     async def on_timeout(self) -> None:
         ...
 
-    def timeout_handler(self):
+    def timeout_handler(self) -> None:
         asyncio.ensure_future(self.on_timeout())
 
-        async def _timeout_handler_inner():
+        async def _timeout_handler_inner() -> None:
             asyncio.ensure_future(
                 db.Guess(
                     character_id=await self.get_character_id(), game_mode=self.game_mode
@@ -58,8 +58,8 @@ class AbstractGame(abc.ABC):
 
         asyncio.ensure_future(_timeout_handler_inner())
 
-    async def get_character_id(self):
-        return await characters.get_character_id(name=self.character)
+    async def get_character_id(self) -> int:
+        return await characters.get_character_id(name=self.character)  # type: ignore
 
     async def start(self) -> None:
         self.bot.subscribe(hikari.MessageCreateEvent, self.on_message)
