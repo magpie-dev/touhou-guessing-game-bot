@@ -1,5 +1,6 @@
 import enum
 import typing
+
 import apgorm
 from apgorm import types
 
