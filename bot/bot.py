@@ -33,10 +33,10 @@ def run() -> None:
         bot = typing.cast("Bot", event.app)
         bot._db = db.Database("migrations")
         await bot.db.connect(
-            host="localhost",
-            database="touhoubot",
-            user="touhoubot",
-            password="Rookie1001",
+            host=CONFIG.db_host,
+            database=CONFIG.db_database,
+            user=CONFIG.db_user,
+            password=CONFIG.db_pwd,
         )
 
         if bot.db.must_create_migrations():

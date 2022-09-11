@@ -7,6 +7,11 @@ import dotenv
 class Config:
     token: str
 
+    db_host: str
+    db_database: str
+    db_user: str
+    db_pwd: str
+
     def __post_init__(self) -> None:
         if self.token is None:
             raise ValueError("TOKEN environment variable not found")
