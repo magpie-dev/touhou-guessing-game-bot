@@ -67,7 +67,9 @@ class AbstractGame(abc.ABC):
         if self._timeout_event:
             self._timeout_event.cancel()
 
-        self._timeout_event = asyncio.get_event_loop().call_later(self.timeout, self.timeout_handler)
+        self._timeout_event = asyncio.get_event_loop().call_later(
+            self.timeout, self.timeout_handler
+        )
 
     async def start(self) -> None:
         if not self.on_message in self.bot.event_manager.get_listeners(hikari.MessageCreateEvent):  # type: ignore

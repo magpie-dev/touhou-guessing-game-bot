@@ -1,11 +1,11 @@
 from __future__ import annotations
+
 import dataclasses
-
-import miru
-
 import typing
-import hikari
+
 import crescent
+import hikari
+import miru
 
 if typing.TYPE_CHECKING:
     from bot.guessing_game.abstract_game import AbstractGame

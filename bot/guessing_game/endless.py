@@ -1,16 +1,16 @@
 from __future__ import annotations
+
 import asyncio
+import typing
 
-from bot.guessing_game.abstract_game import AbstractGame
-
-import db
 import crescent
-import characters
 import hikari
 import miru
 
-import typing
+import characters
+import db
 from bot import utils
+from bot.guessing_game.abstract_game import AbstractGame
 
 if typing.TYPE_CHECKING:
     from bot.bot import Bot
@@ -84,7 +84,9 @@ class Buttons(utils.GameView):
         embed = (
             hikari.Embed(title="Game Over!")
             .set_image(characters.get_character_url(self.game.character, hidden=False))
-            .set_footer(f"Game ended by {utils.get_name_or_nickname(ctx.user, ctx.member)}")
+            .set_footer(
+                f"Game ended by {utils.get_name_or_nickname(ctx.user, ctx.member)}"
+            )
         )
         self.stop()
         await asyncio.gather(self.game.stop(), ctx.respond(embeds=[embed]))
