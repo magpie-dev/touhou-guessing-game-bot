@@ -10,6 +10,7 @@ __all__: typing.Sequence[str] = ("User", "Guess", "Character", "Database", "Game
 class GameMode(enum.IntEnum):
     NORMAL = 0
     CHALLENGE = 1
+    ENDLESS = 2
 
 
 class User(apgorm.Model):

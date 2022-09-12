@@ -15,11 +15,11 @@ if typing.TYPE_CHECKING:
 
 
 class AbstractGame(abc.ABC):
-    def __init__(self, ctx: crescent.Context, bot: Bot, *, round_timeout: int) -> None:
+    def __init__(self, ctx: crescent.Context, bot: Bot) -> None:
         self.ctx = ctx
         self.bot = bot
-
-        asyncio.get_event_loop().call_later(round_timeout, self.timeout_handler)
+        self._timeout_event: asyncio.TimerHandle | None = None
+        self.schedule_timeout()
 
     @property
     @abc.abstractmethod
@@ -29,6 +29,11 @@ class AbstractGame(abc.ABC):
     @property
     @abc.abstractmethod
     def game_mode(self) -> db.GameMode:
+        ...
+
+    @property
+    @abc.abstractmethod
+    def timeout(self) -> int:
         ...
 
     @abc.abstractmethod
@@ -58,11 +63,21 @@ class AbstractGame(abc.ABC):
     async def get_character_id(self) -> int:
         return await characters.get_character_id(name=self.character)
 
+    def schedule_timeout(self) -> None:
+        if self._timeout_event:
+            self._timeout_event.cancel()
+
+        self._timeout_event = asyncio.get_event_loop().call_later(self.timeout, self.timeout_handler)
+
     async def start(self) -> None:
-        self.bot.subscribe(hikari.MessageCreateEvent, self.on_message)
+        if not self.on_message in self.bot.event_manager.get_listeners(hikari.MessageCreateEvent):  # type: ignore
+            self.bot.subscribe(hikari.MessageCreateEvent, self.on_message)
+
         await self.on_start()
 
     async def stop(self) -> None:
+        if self._timeout_event:
+            self._timeout_event.cancel()
         self.bot.unsubscribe(hikari.MessageCreateEvent, self.on_message)
 
     async def on_message(self, event: hikari.MessageCreateEvent) -> None:

@@ -12,7 +12,7 @@ generate-silhouettes = "characters.generate_silhouettes:main"
 
 
 [tool.poetry.dependencies]
-python = ">=3.10,<3.11"
+python = ">=3.8,<3.11"
 hikari-crescent = "^0.3.0"
 hikari = ">=2.0.0-dev.110"
 Pillow = "^9.2.0"
@@ -22,6 +22,7 @@ numpy = "^1.23.1"
 asyncpg = "^0.26.0"
 apgorm = "^1.0.0-beta.12"
 async-lru = "^1.0.3"
+hikari-miru = "^1.1.2"
 
 [tool.poetry.dev-dependencies]
 mypy = "^0.971"

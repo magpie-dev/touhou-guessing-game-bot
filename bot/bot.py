@@ -5,6 +5,7 @@ import typing
 
 import crescent
 import hikari
+import miru
 
 import characters
 import db
@@ -27,6 +28,8 @@ class Bot(crescent.Bot):
 
 def run() -> None:
     bot = Bot()
+
+    miru.load(bot)
 
     @bot.listen()
     async def _(event: hikari.StartingEvent) -> None:
