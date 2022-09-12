@@ -67,6 +67,8 @@ class EndlessGame(AbstractGame):
 
 
 class Buttons(utils.GameView):
+    game: EndlessGame
+
     @miru.button(label="Skip", style=hikari.ButtonStyle.PRIMARY)
     async def skip(self, _: miru.Button[typing.Any], ctx: miru.Context) -> None:
         asyncio.ensure_future(
