@@ -16,7 +16,7 @@ class Bot(crescent.Bot):
     def __init__(self) -> None:
         super().__init__(token=CONFIG.token)
 
-        self.plugins.load_folder("bot.plugins")
+        self.plugins.load_folder("src.bot.plugins")
         self._db: db.Database | None = None
 
     @property
