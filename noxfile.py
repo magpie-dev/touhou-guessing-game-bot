@@ -5,11 +5,7 @@ import typing
 
 import nox
 
-SCRIPT_PATHS = [
-    "bot",
-    "characters",
-    "db",
-]
+SCRIPT_PATHS = ["bot", "characters", "db"]
 
 
 def poetry_session(
@@ -25,7 +21,9 @@ def poetry_session(
     return inner
 
 
-def pip_session(*args: str, name: str | None = None) -> typing.Callable[[nox.Session], None]:
+def pip_session(
+    *args: str, name: str | None = None
+) -> typing.Callable[[nox.Session], None]:
     def inner(callback: typing.Callable[[nox.Session], None]):
         @nox.session(name=name)
         @functools.wraps(callback)

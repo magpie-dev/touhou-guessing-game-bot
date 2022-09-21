@@ -72,7 +72,9 @@ class AbstractGame(abc.ABC):
         )
 
     async def start(self) -> None:
-        if not self.on_message in self.bot.event_manager.get_listeners(hikari.MessageCreateEvent):  # type: ignore
+        if self.on_message not in self.bot.event_manager.get_listeners(
+            hikari.MessageCreateEvent  # type: ignore
+        ):
             self.bot.subscribe(hikari.MessageCreateEvent, self.on_message)
 
         await self.on_start()

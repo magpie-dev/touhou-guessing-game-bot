@@ -1,10 +1,7 @@
 from __future__ import annotations
 
-import dataclasses
 import typing
 
-import crescent
-import hikari
 import miru
 
 if typing.TYPE_CHECKING:
