@@ -1,8 +1,8 @@
 import crescent
 
-from bot.utils import Plugin
+import utils
 
-plugin = Plugin()
+plugin = utils.Plugin()
 
 
 @plugin.include

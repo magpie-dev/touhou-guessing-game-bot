@@ -9,9 +9,8 @@ import miru
 
 import characters
 import db
-from bot import utils
+import utils
 from bot.guessing_game.abstract_game import AbstractGame
-from characters.utils import get_character_url, random_character
 
 if typing.TYPE_CHECKING:
     from bot.bot import Bot
@@ -20,7 +19,7 @@ if typing.TYPE_CHECKING:
 class Game(AbstractGame):
     def __init__(self, ctx: crescent.Context, bot: Bot) -> None:
         super().__init__(ctx, bot)
-        self._character = random_character()
+        self._character = characters.random_character()
 
     @property
     def character(self) -> str:
@@ -36,21 +35,21 @@ class Game(AbstractGame):
 
     async def on_win(self) -> None:
         embed = hikari.Embed(title="Correct!").set_image(
-            get_character_url(self.character, hidden=False)
+            characters.get_character_url(self.character, hidden=False)
         )
         await self.ctx.respond(embeds=[embed])
         await self.stop()
 
     async def on_start(self) -> None:
         embed = hikari.Embed(title="Guess the Touhou!").set_image(
-            get_character_url(self.character, hidden=True)
+            characters.get_character_url(self.character, hidden=True)
         )
         await Buttons.respond_with_view(self, embeds=[embed])
 
     async def on_timeout(self) -> None:
         embed = (
             hikari.Embed(title=self.character)
-            .set_image(get_character_url(self.character, hidden=False))
+            .set_image(characters.get_character_url(self.character, hidden=False))
             .set_author(name="Nobody guessed the answer :(")
         )
         await self.ctx.respond(embeds=[embed])
