@@ -1,8 +1,8 @@
 import crescent
 
+import utils
 from bot.guessing_game.endless import EndlessGame
 from bot.guessing_game.game import Game
-import utils
 
 plugin = utils.Plugin()
 
