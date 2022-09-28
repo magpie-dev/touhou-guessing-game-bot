@@ -5,7 +5,7 @@ import typing
 
 import nox
 
-SCRIPT_PATHS = ["bot", "characters", "db"]
+SCRIPT_PATHS = ["src"]
 
 
 def poetry_session(

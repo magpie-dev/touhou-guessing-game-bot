@@ -4,7 +4,12 @@ version = "0.1.0"
 description = "A touhou guessing game discord bot."
 authors = ["Lunarmagpie <bambolambo0@gmail.com>"]
 license = "GPLv2"
-packages = [{ include = "bot" }, { include = "characters" }, { include = "db" }]
+packages = [
+    { include = "bot", from = "src" },
+    { include = "characters", from = "src" },
+    { include = "db", from = "src" },
+    { include = "utils", from = "src" },
+]
 
 [tool.poetry.scripts]
 start = "bot.bot:run"

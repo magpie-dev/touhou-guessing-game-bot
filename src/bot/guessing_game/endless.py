@@ -9,7 +9,7 @@ import miru
 
 import characters
 import db
-from bot import utils
+import utils
 from bot.guessing_game.abstract_game import AbstractGame
 
 if typing.TYPE_CHECKING:

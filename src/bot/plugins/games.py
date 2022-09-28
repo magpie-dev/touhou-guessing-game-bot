@@ -1,10 +1,10 @@
 import crescent
 
+import utils
 from bot.guessing_game.endless import EndlessGame
 from bot.guessing_game.game import Game
-from bot.utils import Plugin
 
-plugin = Plugin()
+plugin = utils.Plugin()
 
 group = crescent.Group("guessing-game")
 
